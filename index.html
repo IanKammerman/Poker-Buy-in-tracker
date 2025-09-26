@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Poker Buy-ins</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Simple tracker for poker buy-ins, rebuys, and cashouts.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+    <header class="app-header">
+        <div class="container header-inner">
+            <h1>Poker Game Tracker</h1>
+            <div class="session-actions">
+                <button id="resetBtn" class="btn btn-danger" title="Clear current session">Reset</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="controls">
+            <form id="addPlayerForm" class="card">
+                <div class="form-row">
+                    <label for="playerName">Name</label>
+                    <input id="playerName" type="text" placeholder="Player name" required>
+                </div>
+                <div class="form-row">
+                    <label for="buyInAmount">Buy-in</label>
+                    <input id="buyInAmount" type="number" min="0" step="0.01" placeholder="0.00" required>
+                </div>
+                <div class="form-row">
+                    <button type="submit" class="btn btn-primary">Add Player</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="players card">
+            <div class="table-scroll">
+                <table id="playersTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Buy-ins</th>
+                            <th>Rebuys</th>
+                            <th>Total In</th>
+                            <th>Cash Out</th>
+                            <th>Net</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="playersTbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="summary card">
+            <div class="summary-grid">
+                <div>
+                    <div class="summary-label">Total Buy-ins</div>
+                    <div id="totalIn" class="summary-value">$0.00</div>
+                </div>
+                <div>
+                    <div class="summary-label">Total Cash Out</div>
+                    <div id="totalOut" class="summary-value">$0.00</div>
+                </div>
+                <div>
+                    <div class="summary-label">Discrepancy</div>
+                    <div id="discrepancy" class="summary-value">$0.00</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container footer">
+        <small>Data saves in your browser only.</small>
+    </footer>
+
+    <dialog id="rebuyDialog">
+        <form method="dialog" id="rebuyForm">
+            <h3>Add Rebuy</h3>
+            <div class="form-row">
+                <label for="rebuyAmount">Amount</label>
+                <input id="rebuyAmount" type="number" min="0" step="0.01" required>
+            </div>
+            <menu>
+                <button value="cancel" class="btn">Cancel</button>
+                <button value="confirm" class="btn btn-primary">Add</button>
+            </menu>
+        </form>
+    </dialog>
+
+    <dialog id="cashoutDialog">
+        <form method="dialog" id="cashoutForm">
+            <h3>Set Cash Out</h3>
+            <div class="form-row">
+                <label for="cashoutAmount">Amount</label>
+                <input id="cashoutAmount" type="number" min="0" step="0.01" required>
+            </div>
+            <menu>
+                <button value="cancel" class="btn" formnovalidate>Cancel</button>
+                <button value="confirm" class="btn btn-primary">Set</button>
+            </menu>
+        </form>
+    </dialog>
+
+    <script src="app.js"></script>
+    
+</body>
+</html>
+
+
